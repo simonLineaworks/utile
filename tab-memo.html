@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>TAB</title>
+	<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+</head>
+
+
+<style>
+	.container{
+		width: 800px;
+		margin: 0 auto;}
+		ul.tabs{
+			margin: 0px;
+			padding: 0px;
+			list-style: none;}
+			li{
+				background: none;
+				color: #222;
+				display: inline-block;
+				padding: 10px 15px;
+				cursor: pointer;}
+				li.current{
+					background: #ededed;
+					color: #222;}
+		
+		.tab-content{
+			transition: opacity 1s ease-out;
+			opacity: 0; 
+			height: 0;
+			overflow: hidden;}
+			.tab-content.current{
+				opacity: 1;
+				height: auto;
+			}
+
+</style>
+
+<body>
+	
+<div class="container">
+
+	<ul class="tabs">
+		<li class="tab-link current" data-tab="lip">LIP</li>
+		<li class="tab-link" data-tab="foundation">FOUNDATION</li>
+	</ul>
+
+	<div id="lip" class="tab-content current">
+		<h2>LIP</h2>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, quisquam vel eius fugit! Esse, repudiandae, dolorum provident consequuntur sunt, iusto harum qui excepturi iste vitae nam non. Quos, autem iste.</p>
+	</div>
+	<div id="foundation" class="tab-content">
+		<h2>FOUNDATION</h2>
+		<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus cumque iste quis suscipit aperiam vero earum sequi facilis, repudiandae omnis ex ut possimus vitae quidem voluptas velit cupiditate animi. Fugit.</p>
+	</div>
+
+</div>
+
+
+<script>
+	$(document).ready(function(){
+		lip_foundation_tab();	
+	});
+
+	function lip_foundation_tab(){
+		var url = window.location.href;
+		var activeTab = url.substring(url.indexOf("#") + 1);
+		if(activeTab == 'lip' | activeTab == 'foundation'){
+			$('ul.tabs li').removeClass('current');
+			$('.tab-content').removeClass('current');
+			var lip_tab = $('*[data-tab="'+activeTab+'"]');
+			lip_tab.addClass('current');
+			$('#'+activeTab).addClass('current');
+		}
+		$('ul.tabs li').click(function(){
+			var tab_id = $(this).attr('data-tab');
+			$('ul.tabs li').removeClass('current');
+			$('.tab-content').removeClass('current');
+
+			$(this).addClass('current');
+			$("#"+tab_id).addClass('current');
+		})
+	}		
+</script>
+
+</body>
+</html>
